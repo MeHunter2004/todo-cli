@@ -33,18 +33,18 @@ This separation improves readability, maintainability, and extensibility.
 ## 🚀 Usage
 
 Run from the project root:
-```bash
+``bash
 python main.py <command>
-Add a task
+➕ Add a Task
 bash
 python main.py add "Buy groceries"
-List tasks
+📋 List Tasks
 bash
 python main.py list
-Complete a task
+✅ Complete a Task
 bash
 python main.py complete 1
-Delete a task
+❌ Delete a Task
 bash
 python main.py delete 1
 🛠 Tech Stack
@@ -54,6 +54,11 @@ JSON
 dataclasses
 👤 Author
 Computer Engineering Student | Python Developer
+
+If you find this useful, feel free to ⭐ the repository.
+
+`
+
 
 If you find this useful, feel free to ⭐ the repository.
 
