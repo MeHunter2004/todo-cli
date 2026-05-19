@@ -33,29 +33,33 @@ This separation improves readability, maintainability, and extensibility.
 ## 🚀 Usage
 
 Run from the project root:
-``bash
 python main.py <command>
-➕ Add a Task
-bash
+## ➕ Add a Task
 python main.py add "Buy groceries"
-📋 List Tasks
+## 📋 List Tasks
 bash
 python main.py list
-✅ Complete a Task
+## ✅ Complete a Task
 bash
 python main.py complete 1
-❌ Delete a Task
+## ❌ Delete a Task
 bash
 python main.py delete 1
-🛠 Tech Stack
+
+---
+
+## 🛠 Tech Stack
 Python 3
 argparse
 JSON
 dataclasses
-👤 Author
+
+---
+
+## 👤 Author
 Computer Engineering Student | Python Developer
 
-If you find this useful, feel free to ⭐ the repository.
+## If you find this useful, feel free to ⭐ the repository.
 
 `
 
