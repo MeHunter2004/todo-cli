@@ -33,17 +33,23 @@ This separation improves readability, maintainability, and extensibility.
 ## 🚀 Usage
 
 Run from the project root:
+
 python main.py <command>
+
 ### ➕ Add a Task
+
 python main.py add "Buy groceries"
+
 ### 📋 List Tasks
-bash
+
 python main.py list
+
 ### ✅ Complete a Task
-bash
+
 python main.py complete 1
+
 ### ❌ Delete a Task
-bash
+
 python main.py delete 1
 
 ---
