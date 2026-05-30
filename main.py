@@ -1,48 +1,37 @@
-import argparse
+import typer
 from task_manager import TaskManager
-from utils import print_tasks
+from utils import print_tasks, console
 
+app = typer.Typer(help="Professional Todo CLI built with Typer and Rich")
+manager = TaskManager()
 
-def main():
+@app.command()
+def add(description: str = typer.Argument(..., help="The task description")):
+    """Add a new task to your list."""
+    manager.add_task(description)
+    console.print(f"[bold green]✓[/bold green] Task added: [white]'{description}'[/white]")
 
-    parser = argparse.ArgumentParser(description="CLI To-Do List")
+@app.command()
+def list():
+    """Show all tasks in a beautiful table."""
+    tasks = manager.get_all_tasks()
+    print_tasks(tasks)
 
-    subparsers = parser.add_subparsers(dest="command")
-
-    add_parser = subparsers.add_parser("add")
-    add_parser.add_argument("title")
-
-    delete_parser = subparsers.add_parser("delete")
-    delete_parser.add_argument("id", type=int)
-
-    complete_parser = subparsers.add_parser("complete")
-    complete_parser.add_argument("id", type=int)
-
-    subparsers.add_parser("list")
-
-    args = parser.parse_args()
-
-    manager = TaskManager()
-
-    if args.command == "add":
-        manager.add_task(args.title)
-        print("Task added.")
-
-    elif args.command == "delete":
-        manager.delete_task(args.id)
-        print("Task deleted.")
-
-    elif args.command == "complete":
-        manager.complete_task(args.id)
-        print("Task marked as completed.")
-
-    elif args.command == "list":
-        tasks = manager.list_tasks()
-        print_tasks(tasks)
-
+@app.command()
+def complete(task_id: int = typer.Argument(..., help="The ID of the task to complete")):
+    """Mark a task as done."""
+    if manager.mark_completed(task_id):
+        console.print(f"[bold green]✓[/bold green] Task [cyan]#{task_id}[/cyan] marked as completed!")
     else:
-        parser.print_help()
+        console.print(f"[bold red]✗[/bold red] Task [cyan]#{task_id}[/cyan] not found.")
 
+@app.command()
+def delete(task_id: int = typer.Argument(..., help="The ID of the task to delete")):
+    """Remove a task from the list."""
+    if manager.delete_task(task_id):
+        console.print(f"[bold red]![/bold red] Task [cyan]#{task_id}[/cyan] deleted.")
+    else:
+        console.print(f"[bold red]✗[/bold red] Task [cyan]#{task_id}[/cyan] not found.")
 
 if __name__ == "__main__":
-    main()
+    app()
